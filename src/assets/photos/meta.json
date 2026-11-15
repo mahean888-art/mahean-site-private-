@@ -1,0 +1,72 @@
+{
+ "glider": {
+  "file": "glider.gif",
+  "page": "https://commons.wikimedia.org/wiki/File:Gospers_glider_gun.gif",
+  "license": "CC BY-SA 3.0",
+  "artist": "Lucas Vieira",
+  "ok": true
+ },
+ "rand": {
+  "file": "rand.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Randcorporationsantamonica.JPG",
+  "license": "CC BY-SA 4.0",
+  "artist": "Coolcaesar",
+  "ok": true
+ },
+ "metalens": {
+  "file": "metalens.png",
+  "page": "https://commons.wikimedia.org/wiki/File:Metalens_with_different_focal_length_and_deflection_angles.png",
+  "license": "CC BY-SA 4.0",
+  "artist": "Rmdigh",
+  "ok": true
+ },
+ "dino": {
+  "file": "dino.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Bioluminescent_dinoflagellates.jpg",
+  "license": "CC BY 2.0",
+  "artist": "catalano82",
+  "ok": true
+ },
+ "panellus": {
+  "file": "panellus.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:PanellusStipticusAug12_2009.jpg",
+  "license": "Public domain",
+  "artist": "Ylem",
+  "ok": true
+ },
+ "leo": {
+  "file": "leo.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Low_Earth_Orbit_(leo-2019-4096-448f97).jpg",
+  "license": "Public domain",
+  "artist": "NASA/ODPO",
+  "ok": true
+ },
+ "supertree": {
+  "file": "supertree.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Supertree_Grove_at_night.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Kanzcech",
+  "ok": true
+ },
+ "deepblue": {
+  "file": "deepblue.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:IBM_Deep_Blue_at_Computer_History_Museum_(9361685537).jpg",
+  "license": "CC BY 2.0",
+  "artist": "Anton Chiang from Cupertino, CA, USA",
+  "ok": true
+ },
+ "pinatubo": {
+  "file": "pinatubo.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Pinatubo_1991-06-12_(USGS).jpg",
+  "license": "Public domain",
+  "artist": "Dave Harlow, United States Geological Survey",
+  "ok": true
+ },
+ "bosco": {
+  "file": "bosco.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Milan_skyline_with_Unicredit_Tower_and_Bosco_Verticale.jpg",
+  "license": "CC BY-SA 3.0",
+  "artist": "Daniel Case",
+  "ok": true
+ }
+}
