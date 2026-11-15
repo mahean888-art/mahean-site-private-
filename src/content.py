@@ -18,7 +18,7 @@ def img(key, caption):
 
 ABOUT_PARAS = [
     ('lead', 'Hi, I&rsquo;m Mahean. I recently founded ' + a('https://foresightmachines.com', 'Foresight Machines') + '.'),
-    ('', 'I originally hail from the Global South and grew up on a farm there. I got a proper internet connection for the first time on December 2, 2020.'),
+    ('', 'I grew up on a farm in the Global South, and didn&rsquo;t have a proper internet connection until December 2, 2020.'),
     ('', 'I study computational sciences at ' + a('https://www.minerva.edu', 'Minerva University') + ', which is backed by ' +
          a('https://www.benchmark.com', 'Benchmark') + ', and live in a different country each semester. '
          'When I&rsquo;m not abroad, I live in the great city of San Francisco.'),

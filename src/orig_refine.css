@@ -64,7 +64,6 @@ ol.notes li::before { content: counter(note); position: absolute; left: 0; top: 
 }
 #content:focus, #content:focus-visible { outline: none; }
 #menu .sub-menu { align-items: stretch; text-align: left; background: #0a1118; }
-#sidebar .foot { display: inline-block; padding: 3px 8px; margin-left: 0; color: #b8c6d2; background: rgba(8, 14, 20, .82); border: 1px solid rgba(196,178,138,.25); }
 
 /* one text size everywhere, matching the Notes page */
 #content p, #content li, .lead, .interests li, .interests li p, ol.notes li, .contact, .back { font-size: 14px; line-height: 1.75; }
@@ -75,3 +74,15 @@ ol.notes li { margin-bottom: 12px; padding-left: 28px; }
 ol.notes li::before { font-size: 12px; top: 1px; }
 .photo figcaption { font-size: 12.5px; line-height: 1.6; }
 .contact { margin: 22px 0 48px; }
+
+/* calmer, lighter, fewer frames */
+#sidebar .sys i, .folder .tab small, .crumb span { display: none; }
+.folder .tab { background: rgba(28, 42, 56, .9); border-color: rgba(196, 178, 138, .2); }
+.folder .body { background: rgba(22, 35, 48, .82); border-color: rgba(196, 178, 138, .16); box-shadow: none; }
+.folder .body::before, .folder .body::after { display: none; }
+#sidebar .foot { margin-top: 20px; color: #9fb0bd; letter-spacing: .12em; text-shadow: 0 0 6px #101b27, 0 0 12px #101b27; }
+.photo img, .fig { border: 0; border-radius: 3px; }
+.portrait { border-color: rgba(196, 178, 138, .22); }
+#sidebar { display: flex; flex-direction: column; }
+#sidebar .sys { order: -2; margin-bottom: 2px; }
+#sidebar .foot { order: -1; margin: 0 2px 4px; color: #7f909c; font-size: 10px; text-shadow: none; }
