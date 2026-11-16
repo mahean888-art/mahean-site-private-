@@ -77,10 +77,10 @@ ol.notes li::before { font-size: 12px; top: 1px; }
 
 /* calmer, lighter, fewer frames */
 #sidebar .sys i, .folder .tab small, .crumb span { display: none; }
-.folder .tab { background: rgba(28, 42, 56, .9); border-color: rgba(196, 178, 138, .2); }
-.folder .body { background: rgba(22, 35, 48, .82); border-color: rgba(196, 178, 138, .16); box-shadow: none; }
+.folder .tab { background: rgba(30, 56, 78, .9); border-color: rgba(196, 178, 138, .2); }
+.folder .body { background: rgba(24, 48, 68, .82); border-color: rgba(196, 178, 138, .16); box-shadow: none; }
 .folder .body::before, .folder .body::after { display: none; }
-#sidebar .foot { margin-top: 20px; color: #9fb0bd; letter-spacing: .12em; text-shadow: 0 0 6px #101b27, 0 0 12px #101b27; }
+#sidebar .foot { margin-top: 20px; color: #9fb0bd; letter-spacing: .12em; text-shadow: 0 0 6px #14293b, 0 0 12px #14293b; }
 .photo img, .fig { border: 0; border-radius: 3px; }
 .portrait { border-color: rgba(196, 178, 138, .22); }
 #sidebar { display: flex; flex-direction: column; }

@@ -19,7 +19,7 @@ hatch=(np.sin(t*np.pi)*0.5+0.5)
 mid=np.clip(1-np.abs(L-0.45)/0.45,0,1)
 L=L*(1-0.28*mid*(hatch<0.45))
 # duotone navy -> pale steel-cream
-dark=np.array([16,27,39])/255; light=np.array([212,226,238])/255
+dark=np.array([20,41,59])/255; light=np.array([196,222,242])/255
 out=dark+(light-dark)*L[...,None]
 # vignette / left fade baked in
 fx=np.clip((x/W-0.05)/0.45,0,1); fx=fx*fx*(3-2*fx)
