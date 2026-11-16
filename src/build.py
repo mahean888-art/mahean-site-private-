@@ -94,5 +94,7 @@ js = js.replace("window.scrollTo(0, 0);\n  mountWidgets();", "window.scrollTo(0,
 a = s.index('<script>'); b = s.index('</script>') + len('</script>')
 s = s[:a] + '<script>\n' + js + '\n</script>' + s[b:]
 
+# every outside link opens in a new tab
+s = re.sub(r'<a href="(https?://[^"]+)"(?![^>]*target=)', r'<a href="\1" target="_blank" rel="noopener noreferrer"', s)
 open(out, 'w', encoding='utf-8').write(s)
 print('ok', len(s))
