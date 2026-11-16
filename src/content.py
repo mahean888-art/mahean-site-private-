@@ -76,7 +76,7 @@ INTERESTS.append(('superforecasting', 'Superforecasting', [
 
 # 03 augmented reality ------------------------------------------------------
 INTERESTS.append(('augmented-reality', 'Augmented reality', [
-    'My first software project, Oasis Labs, tried to build a spatial layer on top of physical reality. The bet was that the platform after the smartphone would be the world itself, with its own social life and commerce.',
+    'My first software project, ' + a('https://devpost.com/software/oasis-labs', 'Oasis Labs') + ', tried to build a spatial layer on top of physical reality. The bet was that the platform after the smartphone would be the world itself, with its own social life and commerce.',
     'Later I studied metamaterials, because glasses you wear every day need much thinner lenses. The best picture of where this goes is still the Big Market in <i>Valerian and the City of a Thousand Planets</i>. I&rsquo;m very optimistic.',
 ], notes(
     a('https://devpost.com/software/oasis-labs', 'Oasis Labs') + ': digital objects anchored to real places, visible to anyone with the right device, and still there when you come back.',
