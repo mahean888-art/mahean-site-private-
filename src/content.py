@@ -33,7 +33,7 @@ INTERESTS = []
 INTERESTS.append(('simulation', 'Simulation', [
     'I got into it through the simulation hypothesis, mostly via Rizwan Virk&rsquo;s book <i>The Simulation Hypothesis</i>, which connects it to science, religion and Eastern mysticism.',
     'These days I mostly think about simulating whole populations and the systems they live in, from a single company to a city to an entire economy. '
-    'Foresight Machines is my attempt at it. I think it has only just become possible.',
+    + a('https://foresightmachines.com', 'Foresight Machines') + ' is my attempt at it. I think it has only just become possible.',
 ], notes(
     wiki('Simulation_hypothesis', 'Bostrom&rsquo;s 2003 argument') + ' is still the cleanest version: if civilisations run detailed simulations of their ancestors, simulated minds will vastly outnumber real ones.',
     'Musk, 2016: the odds we live in base reality are &ldquo;one in billions.&rdquo;',
@@ -77,7 +77,7 @@ INTERESTS.append(('superforecasting', 'Superforecasting', [
 # 03 augmented reality ------------------------------------------------------
 INTERESTS.append(('augmented-reality', 'Augmented reality', [
     'My first software project, ' + a('https://devpost.com/software/oasis-labs', 'Oasis Labs') + ', tried to build a spatial layer on top of physical reality. The bet was that the platform after the smartphone would be the world itself, with its own social life and commerce.',
-    'Later I studied metamaterials, because glasses you wear every day need much thinner lenses. The best picture of where this goes is still the Big Market in <i>Valerian and the City of a Thousand Planets</i>. I&rsquo;m very optimistic.',
+    'Later I studied metamaterials, because glasses you wear every day need much thinner lenses. The closest thing I&rsquo;ve seen to what I was trying to build is the Big Market in <i>Valerian and the City of a Thousand Planets</i>: a whole bazaar you can only see with a headset, sitting on top of an empty desert. I&rsquo;m very optimistic.',
 ], notes(
     a('https://devpost.com/software/oasis-labs', 'Oasis Labs') + ': digital objects anchored to real places, visible to anyone with the right device, and still there when you come back.',
     'Pok&eacute;mon Go (2016) showed the demand: millions of people walked around their cities to find creatures that only existed on their screens.',
@@ -93,7 +93,7 @@ INTERESTS.append(('augmented-reality', 'Augmented reality', [
 # 04 capital ----------------------------------------------------------------
 INTERESTS.append(('capital', 'Capital', [
     'Which ideas get funded decides which futures get built.',
-    'A year deploying venture capital at M13 left me thinking the biggest problems are time and speed: too little money for things that take a decade to prove, and too much process for small bets.',
+    'A year deploying venture capital at ' + a('https://m13.co', 'M13') + ' left me thinking the biggest problems are time and speed: too little money for things that take a decade to prove, and too much process for small bets.',
 ], notes(
     'Venture returns follow a power law. In most funds one company returns more than all the others combined. ' + a('https://reactionwheel.net', 'Jerry Neumann') + ' has written the most careful work on this.',
     'Fund structure shapes what gets built. A ten-year fund wants an exit within ten years. Fusion, new materials and most of biology take longer.',
@@ -170,11 +170,11 @@ INTERESTS.append(('strategy-games', 'Strategy games', [
 
 # 08 planetary engineering --------------------------------------------------
 INTERESTS.append(('planetary-engineering', 'Planetary engineering', [
-    'Rain where it&rsquo;s needed, carbon pulled out of the air and turned to stone,, and other ways of steering the climate deliberately. Rainmaker is a good example.',
+    'Rain where it&rsquo;s needed, carbon pulled out of the air and turned to stone, and other ways of steering the climate deliberately. ' + a('https://www.rainmaker.com', 'Rainmaker') + ' is a good example.',
     'I like thinking about which futures Earth could still have.',
 ], notes(
     '1946: Vincent Schaefer at General Electric drops dry ice into a cloud from a plane and makes it snow. ' + wiki('Cloud_seeding', 'Cloud seeding') + ' stayed controversial for decades because the effect was hard to measure.',
-    'Rainmaker, founded by Augustus Doricko, seeds clouds with drones and measures the result with radar. If it works reliably, a dry region gets more of the water already passing overhead.',
+    a('https://www.rainmaker.com', 'Rainmaker') + ', founded by Augustus Doricko, seeds clouds with drones and measures the result with radar. If it works reliably, a dry region gets more of the water already passing overhead.',
     'Carbon removal, by permanence. Direct air capture: ' + a('https://climeworks.com', 'Climeworks') + ' in Iceland, paired with ' + a('https://www.carbfix.com', 'Carbfix') + ', which injects CO<sub>2</sub> into basalt where it turns to stone within about two years. ' + a('https://www.heirloomcarbon.com', 'Heirloom') + ' uses limestone.',
     wiki('Enhanced_weathering', 'Enhanced weathering') + ': spread crushed basalt or olivine and let the rock cycle run faster. ' + a('https://charmindustrial.com', 'Charm') + ' turns crop waste into bio-oil and pumps it underground.',
     a('https://frontierclimate.com', 'Frontier') + ' (Stripe, Google, Shopify, Meta, McKinsey, 2022) committed nearly a billion dollars to buy permanent carbon removal in advance.',
