@@ -82,7 +82,7 @@ s = s[:k] + '\n'.join(page(i, sl, t, body) for i, (sl, t, _, body) in enumerate(
 s = s.replace('<h2>notes</h2>', '<h2>Notes</h2>').replace('<h2>bookshelf</h2>', '<h2>Bookshelf</h2>')
 
 sub_once('inset: 0 0 0 50%;\n  z-index: -1;', 'inset: 0;\n  z-index: -1;')
-sub_once('linear-gradient(90deg, #1b3550 0%, rgba(27,53,80,.7) 50%, rgba(27,53,80,.35))', 'linear-gradient(90deg, #080d15 0%, #080d15 48%, rgba(8,13,21,.82) 59%, rgba(8,13,21,.16) 78%, rgba(8,13,21,0) 94%)')
+sub_once('linear-gradient(90deg, #1b3550 0%, rgba(27,53,80,.7) 50%, rgba(27,53,80,.35))', 'linear-gradient(90deg, rgba(12,12,12,.10) 0%, rgba(12,12,12,.22) 28%, rgba(12,12,12,.22) 52%, rgba(12,12,12,0) 70%)')
 # favicon from the portrait
 pm = re.search(r'<img class="portrait" src="data:image/jpeg;base64,([^"]+)"', s)
 pim = Image.open(io.BytesIO(base64.b64decode(pm.group(1)))).convert('RGB')
