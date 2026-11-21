@@ -38,19 +38,24 @@ s, n = re.subn(r"url\('data:image/jpeg;base64,[^']+'\) 80% center / cover no-rep
                "url('data:image/jpeg;base64," + bg + "') center center / cover no-repeat;\n  opacity: 1;", s, count=1)
 assert n == 1
 
-# ---- sidebar directory: clean human-readable labels, no repetitive file icons
+# ---- sidebar: Patrick Collison-style alphabetical page list in 80s/90s machine theme
 a = s.index('<div class="folders">'); e = s.index('</div><p class="foot">', a) + len('</div>')
-int_items = ''.join(f'<li><a href="#{sl}" data-title="{html.unescape(t)}">{t}</a></li>' for sl, t, _, _ in C.INTERESTS)
+all_pages = [('about', 'About'), ('notes', 'Notes'), ('bookshelf', 'Bookshelf')] + [
+    (sl, html.unescape(t)) for sl, t, _, _ in C.INTERESTS
+]
+all_pages.sort(key=lambda pair: pair[1].lower())
+nav_items = ''.join(
+    f'<li><a href="#{sl}" data-title="{html.escape(title)}">'
+    f'<span class="label">{html.escape(title)}</span>'
+    f'<span class="idx">{i:02d}</span></a></li>'
+    for i, (sl, title) in enumerate(all_pages, 1)
+)
 folders_html = (
     '<div class="folders">'
-    '<section class="folder"><div class="tab">Home</div><div class="body"><ul>'
-    '<li><a href="#about" data-title="About">About</a></li>'
-    '</ul></div></section>'
-    f'<section class="folder"><div class="tab">Interests</div><div class="body"><ul>{int_items}</ul></div></section>'
-    '<section class="folder"><div class="tab">Archive</div><div class="body"><ul>'
-    '<li><a href="#notes" data-title="Notes">Notes</a></li>'
-    '<li><a href="#bookshelf" data-title="Bookshelf">Bookshelf</a></li>'
-    '</ul></div></section>'
+    '<section class="folder">'
+    '<div class="tab">Mahean Magamemnon</div>'
+    f'<div class="body"><ul>{nav_items}</ul></div>'
+    '</section>'
     '</div>'
 )
 s = s[:a] + folders_html + s[e:]
