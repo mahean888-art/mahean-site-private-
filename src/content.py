@@ -17,8 +17,8 @@ def img(key, caption):
     return f'{{IMG:{key}|{caption}}}'
 
 ABOUT_PARAS = [
-    ('lead', 'Hi, I&rsquo;m Mahean. I recently founded ' + a('https://foresightmachines.com', 'Foresight Machines') + '.'),
-    ('', 'I originally hail from the Global South and grew up on a farm where the internet didn&rsquo;t really reach until late 2020.'),
+    ('lead', 'Hi, I&rsquo;m Mahean. I originally hail from the Global South and grew up on a farm where the internet didn&rsquo;t really reach until late 2020.'),
+    ('', 'I recently founded ' + a('https://foresightmachines.com', 'Foresight Machines') + '.'),
     ('', 'I study computational sciences at ' + a('https://www.minerva.edu', 'Minerva University') + ', which is backed by ' +
          a('https://www.benchmark.com', 'Benchmark') + ', and live in a different country each semester. '
          'When I&rsquo;m not abroad, I live in the great city of San Francisco.'),
