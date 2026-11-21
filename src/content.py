@@ -22,7 +22,7 @@ ABOUT_PARAS = [
     ('', 'I study computational sciences at ' + a('https://www.minerva.edu', 'Minerva University') + ', which is backed by ' +
          a('https://www.benchmark.com', 'Benchmark') + ', and live in a different country each semester. '
          'When I&rsquo;m not abroad, I live in the great city of San Francisco.'),
-    ('', 'Before that, I spent a year on the core investment team at ' + a('https://m13.co', 'M13') +
+    ('', 'Most recently, I spent a year on the core investment team at ' + a('https://m13.co', 'M13') +
          ', focused on AI and energy startups and building software for automation.'),
     ('', 'Some of my primal instincts are engineering foresight, engineering light in all its forms, and wondering at how much of space is still out there for us.'),
 ]
