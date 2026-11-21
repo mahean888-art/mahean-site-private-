@@ -32,10 +32,10 @@ def embed(key, caption):
             f'<figcaption>{caption} <span class="credit">{credit}</span></figcaption></figure>')
 IMG_RE = re.compile(r'\{IMG:([a-z]+)\|(.*?)\}', re.S)
 
-# ---- background: the same artwork, cleanly set in deep space on the right
+# ---- background: pure Form Bio obsidian/silver monochrome grained backdrop
 bg = base64.b64encode(open(SRC + 'art/engraved.jpg', 'rb').read()).decode()
 s, n = re.subn(r"url\('data:image/jpeg;base64,[^']+'\) 80% center / cover no-repeat;\n  opacity: \.48;",
-               "url('data:image/jpeg;base64," + bg + "') right center / cover no-repeat;\n  opacity: 1;", s, count=1)
+               "url('data:image/jpeg;base64," + bg + "') center center / cover no-repeat;\n  opacity: 1;", s, count=1)
 assert n == 1
 
 # ---- sidebar directory: clean human-readable labels, no repetitive file icons
@@ -82,7 +82,7 @@ s = s[:k] + '\n'.join(page(i, sl, t, body) for i, (sl, t, _, body) in enumerate(
 s = s.replace('<h2>notes</h2>', '<h2>Notes</h2>').replace('<h2>bookshelf</h2>', '<h2>Bookshelf</h2>')
 
 sub_once('inset: 0 0 0 50%;\n  z-index: -1;', 'inset: 0;\n  z-index: -1;')
-sub_once('linear-gradient(90deg, #1b3550 0%, rgba(27,53,80,.7) 50%, rgba(27,53,80,.35))', 'linear-gradient(90deg, rgba(12,12,12,.10) 0%, rgba(12,12,12,.22) 28%, rgba(12,12,12,.22) 52%, rgba(12,12,12,0) 70%)')
+sub_once('linear-gradient(90deg, #1b3550 0%, rgba(27,53,80,.7) 50%, rgba(27,53,80,.35))', 'radial-gradient(ellipse 68% 72% at 52% 44%, rgba(12,12,12,.18) 0%, rgba(12,12,12,0) 100%)')
 # favicon from the portrait
 pm = re.search(r'<img class="portrait" src="data:image/jpeg;base64,([^"]+)"', s)
 pim = Image.open(io.BytesIO(base64.b64decode(pm.group(1)))).convert('RGB')
