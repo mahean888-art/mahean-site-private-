@@ -32,17 +32,28 @@ def embed(key, caption):
             f'<figcaption>{caption} <span class="credit">{credit}</span></figcaption></figure>')
 IMG_RE = re.compile(r'\{IMG:([a-z]+)\|(.*?)\}', re.S)
 
-# ---- background: the same artwork, in space instead of water
+# ---- background: the same artwork, cleanly set in deep space on the right
 bg = base64.b64encode(open(SRC + 'art/engraved.jpg', 'rb').read()).decode()
 s, n = re.subn(r"url\('data:image/jpeg;base64,[^']+'\) 80% center / cover no-repeat;\n  opacity: \.48;",
-               "url('data:image/jpeg;base64," + bg + "') 85% center / cover no-repeat;\n  opacity: .95;", s, count=1)
+               "url('data:image/jpeg;base64," + bg + "') right center / cover no-repeat;\n  opacity: 1;", s, count=1)
 assert n == 1
 
-# ---- folders: regenerate the interests folder with the current pages
-a = s.index('<section class="folder"><div class="tab">interests'); e = s.index('</section>', a) + len('</section>')
-doc = re.search(r'<svg viewBox="0 0 10 12".*?</svg>', s).group(0)
-items = ''.join(f'<li><a href="#{sl}" data-title="{html.unescape(t)}">{doc}{sl}</a></li>' for sl, t, _, _ in C.INTERESTS)
-s = s[:a] + f'<section class="folder"><div class="tab">interests<small>02</small></div><div class="body"><ul>{items}</ul></div></section>' + s[e:]
+# ---- sidebar directory: clean human-readable labels, no repetitive file icons
+a = s.index('<div class="folders">'); e = s.index('</div><p class="foot">', a) + len('</div>')
+int_items = ''.join(f'<li><a href="#{sl}" data-title="{html.unescape(t)}">{t}</a></li>' for sl, t, _, _ in C.INTERESTS)
+folders_html = (
+    '<div class="folders">'
+    '<section class="folder"><div class="tab">Home</div><div class="body"><ul>'
+    '<li><a href="#about" data-title="About">About</a></li>'
+    '</ul></div></section>'
+    f'<section class="folder"><div class="tab">Interests</div><div class="body"><ul>{int_items}</ul></div></section>'
+    '<section class="folder"><div class="tab">Archive</div><div class="body"><ul>'
+    '<li><a href="#notes" data-title="Notes">Notes</a></li>'
+    '<li><a href="#bookshelf" data-title="Bookshelf">Bookshelf</a></li>'
+    '</ul></div></section>'
+    '</div>'
+)
+s = s[:a] + folders_html + s[e:]
 
 # ---- about
 portrait = re.search(r'<img class="portrait"[^>]*>', s).group(0)
@@ -70,8 +81,8 @@ k = s.index('<template id="page-notes">')
 s = s[:k] + '\n'.join(page(i, sl, t, body) for i, (sl, t, _, body) in enumerate(C.INTERESTS, 1)) + '\n' + s[k:]
 s = s.replace('<h2>notes</h2>', '<h2>Notes</h2>').replace('<h2>bookshelf</h2>', '<h2>Bookshelf</h2>')
 
-sub_once('inset: 0 0 0 50%;\n  z-index: -1;', 'inset: 0 0 0 30%;\n  z-index: -1;')
-sub_once('linear-gradient(90deg, #1b3550 0%, rgba(27,53,80,.7) 50%, rgba(27,53,80,.35))', 'linear-gradient(90deg, #1b3550 0%, rgba(27,53,80,.55) 30%, rgba(27,53,80,0) 60%)')
+sub_once('inset: 0 0 0 50%;\n  z-index: -1;', 'inset: 0;\n  z-index: -1;')
+sub_once('linear-gradient(90deg, #1b3550 0%, rgba(27,53,80,.7) 50%, rgba(27,53,80,.35))', 'linear-gradient(90deg, #080d15 0%, #080d15 48%, rgba(8,13,21,.82) 59%, rgba(8,13,21,.16) 78%, rgba(8,13,21,0) 94%)')
 # favicon from the portrait
 pm = re.search(r'<img class="portrait" src="data:image/jpeg;base64,([^"]+)"', s)
 pim = Image.open(io.BytesIO(base64.b64decode(pm.group(1)))).convert('RGB')
