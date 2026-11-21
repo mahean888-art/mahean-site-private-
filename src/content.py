@@ -24,7 +24,7 @@ ABOUT_PARAS = [
          'When I&rsquo;m not abroad, I live in the great city of San Francisco.'),
     ('', 'Most recently, I spent a year on the core investment team at ' + a('https://m13.co', 'M13') +
          ', focused on AI and energy startups and building software for automation.'),
-    ('', 'Some of my primal instincts are engineering foresight, engineering light in all its forms, and wondering at how much of space is still out there for us.'),
+    ('', 'Some of my primal instincts are engineering foresight, engineering light in all its forms, and building our way further into space.'),
 ]
 
 INTERESTS = []
