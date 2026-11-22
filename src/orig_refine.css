@@ -1,14 +1,14 @@
-/* ---- theme: darker glowy Maven Creative monochrome + 80s/90s machine right-side index ---- */
+/* ---- theme: Dune archival sandstone-parchment, deep umber ink, right-edge Dune index ---- */
 :root {
-  color-scheme: dark;
-  --background: #090909;
-  --surface: #121212;
-  --heading: #f5f5f3;
-  --text: #dcdcd9;
-  --muted: #a0a09d;
-  --subtle: #82827f;
-  --accent: #b0f524;
-  --line: rgba(255, 255, 255, 0.11);
+  color-scheme: light;
+  --background: #e5ded0;
+  --surface: #ece6da;
+  --heading: #191510;
+  --text: #27211a;
+  --muted: #655a4a;
+  --subtle: #847765;
+  --accent: #8f531d;
+  --line: rgba(58, 49, 36, 0.16);
 }
 
 body {
@@ -35,18 +35,18 @@ body {
 }
 #content:focus, #content:focus-visible { outline: none; }
 
-/* ---- right-edge 80s/90s machine navigation (Patrick Collison placement + CRT hardware typography) ---- */
+/* ---- right-edge Dune archival index (Patrick Collison placement + Dune technical-plate detail) ---- */
 #sidebar {
   position: fixed;
   top: 40px;
   right: 34px;
-  width: 215px;
+  width: 220px;
   padding: 0;
   z-index: 10;
   text-align: right;
   font-family: ui-monospace, 'SF Mono', 'IBM Plex Mono', Menlo, Consolas, monospace;
   font-size: 12.5px;
-  line-height: 1.4;
+  line-height: 1.42;
 }
 #sidebar .sys,
 #sidebar .foot { display: none; }
@@ -54,32 +54,45 @@ body {
 .folders { display: block; }
 .folder { margin: 0; }
 .folder .tab {
-  position: static;
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: flex-end;
   gap: 8px;
   width: 100%;
   height: auto;
-  padding: 0 0 9px 0;
-  margin: 0 0 10px 0;
+  padding: 0 0 10px 0;
+  margin: 0 0 11px 0;
   background: none;
   border: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  border-bottom: 1px solid rgba(58, 49, 36, 0.30);
   border-radius: 0;
-  color: var(--heading);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  color: #362e23;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 12.5px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+/* Subtle Dune double-hairline accent under the plate title */
+.folder .tab::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: rgba(58, 49, 36, 0.14);
+}
+/* Small Arrakis bronze diamond marker */
 .folder .tab::after {
   content: '';
   width: 5px;
   height: 5px;
-  border-radius: 50%;
+  border-radius: 0;
+  transform: rotate(45deg);
   background: var(--accent);
-  box-shadow: 0 0 8px rgba(176, 245, 36, 0.75);
+  box-shadow: none;
   flex: none;
 }
 .folder .tab small { display: none; }
@@ -110,27 +123,27 @@ body {
   align-items: baseline;
   justify-content: flex-end;
   gap: 10px;
-  padding: 3.5px 8px 3.5px 0;
-  margin-right: -8px;
+  padding: 3.5px 9px 3.5px 0;
+  margin-right: -9px;
   border-right: 2px solid transparent;
   border-radius: 0;
-  color: #c2c5bf;
+  color: #463d30;
   text-decoration: none;
   letter-spacing: 0.015em;
-  text-shadow: 0 1px 10px rgba(9, 9, 9, 0.85);
-  transition: color .14s ease, border-color .14s ease, text-shadow .14s ease;
+  text-shadow: none;
+  transition: color .14s ease, border-color .14s ease;
 }
 .folder a svg { display: none; }
 .folder a .label {
   text-decoration: underline;
-  text-decoration-color: rgba(255, 255, 255, 0.22);
+  text-decoration-color: rgba(58, 49, 36, 0.24);
   text-underline-offset: 4px;
   text-decoration-thickness: 1px;
   transition: text-decoration-color .14s ease;
 }
 .folder a .idx {
   font-size: 10px;
-  color: #7c807a;
+  color: #8c7e6a;
   letter-spacing: 0.06em;
   font-variant-numeric: tabular-nums;
   transition: color .14s ease;
@@ -138,37 +151,39 @@ body {
 .folder a:hover {
   color: var(--heading);
   background: none;
-  border-right-color: rgba(255, 255, 255, 0.35);
+  border-right-color: rgba(58, 49, 36, 0.35);
 }
 .folder a:hover .label {
-  text-decoration-color: rgba(176, 245, 36, 0.65);
+  text-decoration-color: var(--accent);
 }
 .folder a:hover .idx {
   color: var(--accent);
 }
 .folder a[aria-current='page'] {
-  color: var(--accent);
-  font-weight: 500;
+  color: var(--heading);
+  font-weight: 600;
   background: none;
   border-right-color: var(--accent);
-  text-shadow: 0 0 12px rgba(176, 245, 36, 0.40);
+  text-shadow: none;
 }
 .folder a[aria-current='page'] .label {
-  text-decoration-color: rgba(176, 245, 36, 0.55);
+  text-decoration-color: var(--accent);
 }
 .folder a[aria-current='page'] .idx {
   color: var(--accent);
+  font-weight: 600;
 }
 .folder a[aria-current='page']::after { display: none; }
 
-/* ---- reading typography ---- */
+/* ---- reading typography: razor-sharp dark umber ink on warm Dune parchment ---- */
 .intro { display: flex; align-items: center; gap: 28px; margin-bottom: 34px; }
 .portrait {
   width: 116px;
   height: 138px;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(58, 49, 36, 0.26);
   border-radius: 2px;
+  box-shadow: 0 4px 14px rgba(58, 46, 30, 0.14);
 }
 h1 {
   color: var(--heading);
@@ -182,7 +197,7 @@ h1.page-title { font-size: clamp(30px, 4vw, 40px); }
 h2, h3 {
   color: var(--heading);
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.015em;
   margin: 0 0 24px;
 }
@@ -200,6 +215,7 @@ p { max-width: 600px; margin: 0 0 18px; }
 #content p.lead {
   color: var(--heading);
   font-size: 17px;
+  font-weight: 450;
   line-height: 1.62;
   margin-bottom: 20px;
 }
@@ -207,7 +223,7 @@ p { max-width: 600px; margin: 0 0 18px; }
 #content a {
   color: var(--heading);
   text-decoration: underline;
-  text-decoration-color: rgba(255, 255, 255, 0.30);
+  text-decoration-color: rgba(143, 83, 29, 0.45);
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
   transition: color .14s ease, text-decoration-color .14s ease;
@@ -235,14 +251,14 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .interests h2 { margin-bottom: 26px; }
 .interests ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
 .interests li { display: block; padding: 0; border: 0; }
-.interests li p { margin: 0 0 10px; color: #cfcfcd; }
+.interests li p { margin: 0 0 10px; color: #342c23; }
 .interests li p:last-child { margin-bottom: 0; }
 #content .int-title {
   display: inline-block;
   margin-bottom: 5px;
   color: var(--heading);
   font-size: 16.5px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
 }
 #content .int-title:hover {
@@ -257,7 +273,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
   margin: 0 0 14px;
   font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 11.5px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -297,7 +313,7 @@ ol.notes li::before {
   height: auto;
   max-height: 440px;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(58, 49, 36, 0.22);
   border-radius: 2px;
 }
 .photo img.pixel {
@@ -305,7 +321,9 @@ ol.notes li::before {
   max-width: 100%;
   height: 160px;
   image-rendering: pixelated;
-  filter: invert(1) grayscale(1) contrast(1.06);
+  filter: contrast(1.15) sepia(0.22);
+  mix-blend-mode: multiply;
+  border-color: rgba(58, 49, 36, 0.18);
 }
 .photo figcaption {
   margin-top: 10px;
@@ -319,16 +337,18 @@ ol.notes li::before {
   font-size: 12px;
   text-decoration: none;
 }
-#content .photo .credit a:hover { color: var(--muted); text-decoration: underline; }
+#content .photo .credit a:hover { color: var(--accent); text-decoration: underline; }
 
+/* Dark instrument display embedded cleanly into the Dune archival sheet */
 .fig {
   position: relative;
   margin: 10px 0 30px;
   max-width: 600px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(58, 49, 36, 0.30);
   border-radius: 2px;
-  background: #080808;
+  background: #14110e;
   overflow: hidden;
+  box-shadow: 0 4px 16px rgba(58, 46, 30, 0.12);
 }
 .fig canvas { display: block; width: 100%; height: 300px; touch-action: pan-y; }
 .fig[data-widget='schelling'] canvas { cursor: pointer; }
@@ -337,12 +357,18 @@ ol.notes li::before {
   position: absolute;
   top: 10px;
   right: 14px;
-  color: var(--muted);
+  color: #cfc5b4;
   font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-size: 10.5px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   pointer-events: none;
+}
+
+/* Bookshelf physical book-plate depth on warm parchment */
+.book-grid img {
+  box-shadow: 0 3px 10px rgba(46, 37, 24, 0.16), 0 1px 2px rgba(46, 37, 24, 0.10);
+  border-radius: 1px;
 }
 
 .note-date {
@@ -393,7 +419,7 @@ ol.notes li::before {
   .folder .tab {
     justify-content: flex-start;
     padding-bottom: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 11px;
   }
   .folder .tab::after { order: -1; }
   .folder ul {
@@ -422,6 +448,7 @@ ol.notes li::before {
   .fig canvas { height: 240px; }
   ol.notes li { padding-left: 26px; }
 }
+
 
 
 

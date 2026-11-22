@@ -8,48 +8,41 @@ y, x = np.mgrid[0:H, 0:W].astype(np.float32)
 xn = x / W
 yn = y / H
 
-# Maven Creative "darker yet glowy" monochrome atmosphere:
-# Deep velvety dark obsidian (#090909) with high-contrast sculptural silver-mist glow —
-# genuinely dark and calm behind the text, yet alive with a soft darkroom luminescence.
-base = np.full((H, W), 0.034, dtype=np.float32)  # #090909 deep velvety dark
+# Dune archival sandstone-parchment palette sampled from the Fremen / Emperor plates:
+# Warm sunlit parchment center (#e5ded0), luminous alabaster-sand light on the right (#f1ede4),
+# and deeper warm sandstone-taupe depth along the outer left & lower-left edges (#c7baa4).
+sand_mid = np.array([229, 222, 208], dtype=np.float32) / 255.0   # #e5ded0 warm parchment core
+sand_lit = np.array([242, 238, 229], dtype=np.float32) / 255.0   # #f2eee5 sunlit alabaster-sand
+sand_shd = np.array([196, 184, 163], dtype=np.float32) / 255.0   # #c4b8a3 warm desert taupe edge
 
-aspect = W / H
-dx = (xn - 0.48) * aspect
-dy = (yn - 0.50)
-r = np.hypot(dx, dy)
+# Soft sunlit sweep from upper-right / right (matching "The Fremen" plate lighting)
+d_lit = ((xn - 0.96) / 0.52) ** 2 + ((yn - 0.42) / 0.68) ** 2
+w_lit = np.exp(-0.5 * d_lit) * 0.85
 
-# Soft sculptural crescent / backlit eclipse glow — darker inside, softly glowing along a sweeping arc
-# Stronger toward upper-right & lower-left (Form Bio diagonal lighting) so it glows without washing out the middle
-angle = np.arctan2(dy, dx)
-diag_bias = 0.55 + 0.45 * np.cos(2.0 * (angle + 0.55))  # peaks upper-right & lower-left
-halo = 0.125 * np.exp(-0.5 * ((r - 0.58) / 0.17) ** 2) * diag_bias
+# Warm sandstone shadow grounding the left & lower-left perimeter (bridging both Dune plates)
+d_shd1 = ((xn + 0.08) / 0.36) ** 2 + ((yn - 0.10) / 0.55) ** 2
+d_shd2 = ((xn + 0.06) / 0.40) ** 2 + ((yn - 0.98) / 0.48) ** 2
+w_shd = np.clip(0.72 * np.exp(-0.5 * d_shd1) + 0.78 * np.exp(-0.5 * d_shd2), 0.0, 0.92)
 
-# Subtle warm-neutral backlit bloom in the upper-right and lower-left corners (keeps edges alive, not dead black)
-d_tr = ((xn - 1.00) / 0.30) ** 2 + ((yn + 0.02) / 0.38) ** 2
-glow_tr = 0.17 * np.exp(-0.5 * d_tr)
+# Subtle lower-right corner warmth so the page feels softly framed like an archival sheet
+d_br = ((xn - 1.04) / 0.28) ** 2 + ((yn - 1.04) / 0.32) ** 2
+w_shd = np.clip(w_shd + 0.32 * np.exp(-0.5 * d_br), 0.0, 0.95)
 
-d_bl = ((xn + 0.02) / 0.28) ** 2 + ((yn - 1.02) / 0.36) ** 2
-glow_bl = 0.13 * np.exp(-0.5 * d_bl)
+out = sand_mid[None, None, :] * (1.0 - w_lit[..., None]) + sand_lit[None, None, :] * w_lit[..., None]
+out = out * (1.0 - w_shd[..., None] * 0.65) + sand_shd[None, None, :] * (w_shd[..., None] * 0.65)
 
-# Faint, silky ambient breath behind center so the reading zone feels "not pure #000", yet stays deeply dark (#0d0d0d-#121212)
-center_breath = 0.026 * np.exp(-0.5 * (r / 0.45) ** 2)
-
-out_L = np.clip(base + center_breath + halo + glow_tr + glow_bl, 0.032, 0.32)
-
-# Fine 1px monochrome film grain: silky & quiet in deep darks, subtly luminous across the silver glow
+# Ultra-fine warm mineral / cotton-rag paper grain (tactile, never noisy over text)
 rng = np.random.default_rng(42)
-noise = rng.normal(0.0, 1.0, (H, W)).astype(np.float32)
-norm_v = np.clip((out_L - 0.034) / 0.25, 0.0, 1.0)
-sigma = 0.011 + 0.038 * np.power(norm_v, 0.78)
-out_L = np.clip(out_L + noise * sigma, 0.0, 1.0)
+grain = rng.normal(0.0, 0.0085, (H, W, 1)).astype(np.float32)
+out = np.clip(out + grain, 0.0, 1.0)
 
-rgb = np.stack([out_L, out_L, out_L], axis=-1)
-img = Image.fromarray((rgb * 255).astype(np.uint8), mode='RGB')
-img.save(S + 'engraved.jpg', quality=88, optimize=True, progressive=True)
+img = Image.fromarray((out * 255).astype(np.uint8), mode='RGB')
+img.save(S + 'engraved.jpg', quality=90, optimize=True, progressive=True)
 
 im = Image.open(S + 'engraved.jpg')
 im.thumbnail((1100, 1100))
 im.save(S + 'engrave_s.png')
+
 
 
 
