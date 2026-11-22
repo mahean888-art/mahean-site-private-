@@ -38,22 +38,19 @@ s, n = re.subn(r"url\('data:image/jpeg;base64,[^']+'\) 80% center / cover no-rep
                "url('data:image/jpeg;base64," + bg + "') center center / cover no-repeat;\n  opacity: 1;", s, count=1)
 assert n == 1
 
-# ---- sidebar: Patrick Collison-style alphabetical page list in 80s/90s machine theme
+# ---- sidebar: clean alphabetical page list, no decorative header or indices
 a = s.index('<div class="folders">'); e = s.index('</div><p class="foot">', a) + len('</div>')
 all_pages = [('about', 'About'), ('notes', 'Notes'), ('bookshelf', 'Bookshelf')] + [
     (sl, html.unescape(t)) for sl, t, _, _ in C.INTERESTS
 ]
 all_pages.sort(key=lambda pair: pair[1].lower())
 nav_items = ''.join(
-    f'<li><a href="#{sl}" data-title="{html.escape(title)}">'
-    f'<span class="label">{html.escape(title)}</span>'
-    f'<span class="idx">{i:02d}</span></a></li>'
-    for i, (sl, title) in enumerate(all_pages, 1)
+    f'<li><a href="#{sl}" data-title="{html.escape(title)}">{html.escape(title)}</a></li>'
+    for sl, title in all_pages
 )
 folders_html = (
     '<div class="folders">'
     '<section class="folder">'
-    '<div class="tab">Mahean Magamemnon</div>'
     f'<div class="body"><ul>{nav_items}</ul></div>'
     '</section>'
     '</div>'
@@ -87,7 +84,7 @@ s = s[:k] + '\n'.join(page(i, sl, t, body) for i, (sl, t, _, body) in enumerate(
 s = s.replace('<h2>notes</h2>', '<h2>Notes</h2>').replace('<h2>bookshelf</h2>', '<h2>Bookshelf</h2>')
 
 sub_once('inset: 0 0 0 50%;\n  z-index: -1;', 'inset: 0;\n  z-index: -1;')
-sub_once('linear-gradient(90deg, #1b3550 0%, rgba(27,53,80,.7) 50%, rgba(27,53,80,.35))', 'radial-gradient(ellipse 78% 82% at 54% 46%, rgba(242,238,229,0) 56%, rgba(166,151,126,.16) 100%)')
+sub_once('linear-gradient(90deg, #1b3550 0%, rgba(27,53,80,.7) 50%, rgba(27,53,80,.35))', 'linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 100%)')
 # favicon from the portrait
 pm = re.search(r'<img class="portrait" src="data:image/jpeg;base64,([^"]+)"', s)
 pim = Image.open(io.BytesIO(base64.b64decode(pm.group(1)))).convert('RGB')

@@ -8,40 +8,39 @@ y, x = np.mgrid[0:H, 0:W].astype(np.float32)
 xn = x / W
 yn = y / H
 
-# Dune archival sandstone-parchment palette sampled from the Fremen / Emperor plates:
-# Warm sunlit parchment center (#e5ded0), luminous alabaster-sand light on the right (#f1ede4),
-# and deeper warm sandstone-taupe depth along the outer left & lower-left edges (#c7baa4).
-sand_mid = np.array([229, 222, 208], dtype=np.float32) / 255.0   # #e5ded0 warm parchment core
-sand_lit = np.array([242, 238, 229], dtype=np.float32) / 255.0   # #f2eee5 sunlit alabaster-sand
-sand_shd = np.array([196, 184, 163], dtype=np.float32) / 255.0   # #c4b8a3 warm desert taupe edge
+# Exact left-to-right sunlit parchment gradient sampled from the Dune "The Fremen" plate:
+# x=0.00: #cfc0a6 -> x=0.25: #dbd0bb -> x=0.50: #e8dfd0 -> x=0.75: #f0ebe0 -> x=1.00: #f4f1e8
+stops_x = np.array([0.0, 0.25, 0.50, 0.75, 1.0], dtype=np.float32)
+stops_rgb = np.array([
+    [207, 192, 166],  # #cfc0a6 warm golden-sandstone left
+    [220, 208, 188],  # #dcd0bc warm sand
+    [233, 224, 208],  # #e9e0d0 luminous parchment center
+    [241, 236, 225],  # #f1ece1 soft alabaster
+    [245, 241, 232],  # #f5f1e8 sunlit desert alabaster right
+], dtype=np.float32) / 255.0
 
-# Soft sunlit sweep from upper-right / right (matching "The Fremen" plate lighting)
-d_lit = ((xn - 0.96) / 0.52) ** 2 + ((yn - 0.42) / 0.68) ** 2
-w_lit = np.exp(-0.5 * d_lit) * 0.85
+# Slight diagonal angle (light entering gently from right / upper-right)
+t = np.clip(xn * 0.94 + (1.0 - yn) * 0.08 - 0.02, 0.0, 1.0)
+out = np.empty((H, W, 3), dtype=np.float32)
+for c in range(3):
+    out[..., c] = np.interp(t, stops_x, stops_rgb[:, c])
 
-# Warm sandstone shadow grounding the left & lower-left perimeter (bridging both Dune plates)
-d_shd1 = ((xn + 0.08) / 0.36) ** 2 + ((yn - 0.10) / 0.55) ** 2
-d_shd2 = ((xn + 0.06) / 0.40) ** 2 + ((yn - 0.98) / 0.48) ** 2
-w_shd = np.clip(0.72 * np.exp(-0.5 * d_shd1) + 0.78 * np.exp(-0.5 * d_shd2), 0.0, 0.92)
+# Whisper-soft subtle bottom-left & top-left warmth (keeps edges natural, zero blotches)
+edge_warm = np.exp(-((xn / 0.30) ** 2 + ((yn - 0.95) / 0.45) ** 2) * 0.5) * 0.028
+out = np.clip(out - edge_warm[..., None] * np.array([0.55, 0.75, 1.0], dtype=np.float32), 0.0, 1.0)
 
-# Subtle lower-right corner warmth so the page feels softly framed like an archival sheet
-d_br = ((xn - 1.04) / 0.28) ** 2 + ((yn - 1.04) / 0.32) ** 2
-w_shd = np.clip(w_shd + 0.32 * np.exp(-0.5 * d_br), 0.0, 0.95)
-
-out = sand_mid[None, None, :] * (1.0 - w_lit[..., None]) + sand_lit[None, None, :] * w_lit[..., None]
-out = out * (1.0 - w_shd[..., None] * 0.65) + sand_shd[None, None, :] * (w_shd[..., None] * 0.65)
-
-# Ultra-fine warm mineral / cotton-rag paper grain (tactile, never noisy over text)
+# Ultra-fine archival cotton-rag grain (imperceptible over text, silky tactile finish)
 rng = np.random.default_rng(42)
-grain = rng.normal(0.0, 0.0085, (H, W, 1)).astype(np.float32)
+grain = rng.normal(0.0, 0.0045, (H, W, 1)).astype(np.float32)
 out = np.clip(out + grain, 0.0, 1.0)
 
 img = Image.fromarray((out * 255).astype(np.uint8), mode='RGB')
-img.save(S + 'engraved.jpg', quality=90, optimize=True, progressive=True)
+img.save(S + 'engraved.jpg', quality=92, optimize=True, progressive=True)
 
 im = Image.open(S + 'engraved.jpg')
 im.thumbnail((1100, 1100))
 im.save(S + 'engrave_s.png')
+
 
 
 
